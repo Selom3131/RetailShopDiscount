@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ShopUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId")
+    @Column(name = "user_id")
     int id;
     @Column(name = "first_name")
     String firstName;
