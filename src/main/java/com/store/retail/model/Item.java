@@ -1,13 +1,19 @@
 package com.store.retail.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "item")
 @Data
-public class Item {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,5 +23,8 @@ public class Item {
     String name;
     @Column(name = "item_price")
     double price;
+    @ManyToOne
+    @JoinColumn(name = "item_cat_id")
+    ItemCategory itemCategory;
 
 }

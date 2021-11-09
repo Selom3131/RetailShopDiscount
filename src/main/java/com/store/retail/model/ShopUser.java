@@ -18,4 +18,10 @@ public class ShopUser {
     String lastName;
     @Column(name = "address")
     String address;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cat_id")
+    ShopUserCategory shopUserCategory;
+
+
+
 }
