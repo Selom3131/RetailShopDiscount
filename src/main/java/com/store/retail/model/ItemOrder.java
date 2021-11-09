@@ -24,4 +24,6 @@ public class ItemOrder {
     int quantity;
 //    @OneToOne(mappedBy = "")
 //    int shopUserId;
+
+
 }

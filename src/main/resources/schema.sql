@@ -45,5 +45,6 @@ CREATE TABLE shop_user (
   last_name VARCHAR(250) NOT NULL,
   address VARCHAR(250) DEFAULT NULL,
   cat_id INT NOT NULL,
+  created_at DATE NOT NULL,
   foreign key (cat_id) references shop_user_category(cat_id)
 );

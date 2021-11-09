@@ -12,12 +12,16 @@ INSERT INTO shop_user_category (cat_description,discount) VALUES
 ('Employee',30),
 ('Affiliate',10),
 ('customer',5);
+--
+-- INSERT INTO shop_user (first_name,last_name,address,cat_id) VALUES
+-- ('kossivi selom', 'afeli', '15 apetuple',1),
+-- ('John', 'Dow', 'Chantan Market',1),
+-- ('Felix', 'Jones', 'East Lagon',1);
 
-INSERT INTO shop_user (first_name,last_name,address,cat_id) VALUES
-('kossivi selom', 'afeli', '15 apetuple',1),
-('John', 'Dow', 'Chantan Market',1),
-('Felix', 'Jones', 'East Lagon',1);
-
+INSERT INTO shop_user (first_name,last_name,address,cat_id,created_at) VALUES
+('kossivi selom', 'afeli', '15 apetuple',1,'2021-02-10'),
+('John', 'Dow', 'Chantan Market',1,'2021-02-10'),
+('Felix', 'Jones', 'East Lagon',3,'2019-02-09');
 
 INSERT INTO item_category ( item_cat_name, item_cat_description,bonus)
 VALUES

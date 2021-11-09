@@ -1,7 +1,7 @@
 package com.store.retail.controllers;
 
 
-import com.store.retail.component.Processor;
+
 import com.store.retail.model.*;
 import com.store.retail.repository.ItemRepository;
 import com.store.retail.repository.ShopUserRepository;
@@ -33,23 +33,53 @@ public class ShopService {
         double discountAmount= 0;
         double totalAmount= 0;
 
+
         try{
             System.out.println(request);
             user = shopUserRepository.findById(request.getShopUserId()).get();
-
+            System.out.println("Years " + user.getNumberOfMonths());
 
 
             if(user.getShopUserCategory() != null){
 
+
+
+
                for (ItemOrder itemOrder : request.getItemOrders()) {
                     Item item = itemRepository.findById(itemOrder.getItemId()).get();
-                    if(item.getItemCategory().isBonus()){
+                    if(item.getItemCategory().isBonus() && (item.getItemCategory().getId()== 1 || item.getItemCategory().getId()== 2)){
                         discountAmount += (item.getPrice() * (user.getShopUserCategory().getDiscount()/100)) * itemOrder.getQuantity();
-                    }
+
+                    }else if(user.getNumberOfMonths()> 24) {
+
+                       discountAmount += (item.getPrice() * (user.getShopUserCategory().getDiscount()/100)) * itemOrder.getQuantity();
+
+                   }
+
+
+                   //
+
+
+
                    totalAmount += item.getPrice() * itemOrder.getQuantity();
                    items.add(item);
                     System.out.println(item);
+
                 }
+
+                double numberOfHunderedOfDollards = Math.floor(totalAmount / 100);
+
+
+
+               if(numberOfHunderedOfDollards > 1) {
+
+                   double additionalDiscount = 5 * numberOfHunderedOfDollards;
+
+                   System.out.println(String.format("Additional Bonus %s",additionalDiscount));
+                   discountAmount += additionalDiscount;
+
+               }
+
 
                 response.setRequestId(request.getRequestId());
                 response.setDiscountAmount(discountAmount);
@@ -71,19 +101,6 @@ public class ShopService {
             return result;
 
         }
-
-
-
-
-//        if (user)
-        /*for (ItemOrder itemOrder : request.getItemOrders()) {
-            Item item = itemRepository.findById(itemOrder.getItemId()).get();
-            System.out.println(item);
-        }
-
-
-        System.out.println(shopUserRepository.findById(1));
-        System.out.println(itemRepository.findById(1));*/
 
 
 
